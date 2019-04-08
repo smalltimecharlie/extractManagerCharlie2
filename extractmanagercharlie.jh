@@ -17,7 +17,7 @@ entity ExtractConfig {
 }
 
 entity ExtractOrganisation {
-        Organisation  String,
+        OrganisationName  String,
         ModifiedDate Instant,
         CreatedDate Instant
 }

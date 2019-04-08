@@ -42,8 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ExtractManagerCharlie2App.class)
 public class ExtractOrganisationResourceIntTest {
 
-    private static final String DEFAULT_ORGANISATION = "AAAAAAAAAA";
-    private static final String UPDATED_ORGANISATION = "BBBBBBBBBB";
+    private static final String DEFAULT_ORGANISATION_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_ORGANISATION_NAME = "BBBBBBBBBB";
 
     private static final Instant DEFAULT_MODIFIED_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_MODIFIED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -93,7 +93,7 @@ public class ExtractOrganisationResourceIntTest {
      */
     public static ExtractOrganisation createEntity(EntityManager em) {
         ExtractOrganisation extractOrganisation = new ExtractOrganisation()
-            .organisation(DEFAULT_ORGANISATION)
+            .organisationName(DEFAULT_ORGANISATION_NAME)
             .modifiedDate(DEFAULT_MODIFIED_DATE)
             .createdDate(DEFAULT_CREATED_DATE);
         return extractOrganisation;
@@ -119,7 +119,7 @@ public class ExtractOrganisationResourceIntTest {
         List<ExtractOrganisation> extractOrganisationList = extractOrganisationRepository.findAll();
         assertThat(extractOrganisationList).hasSize(databaseSizeBeforeCreate + 1);
         ExtractOrganisation testExtractOrganisation = extractOrganisationList.get(extractOrganisationList.size() - 1);
-        assertThat(testExtractOrganisation.getOrganisation()).isEqualTo(DEFAULT_ORGANISATION);
+        assertThat(testExtractOrganisation.getOrganisationName()).isEqualTo(DEFAULT_ORGANISATION_NAME);
         assertThat(testExtractOrganisation.getModifiedDate()).isEqualTo(DEFAULT_MODIFIED_DATE);
         assertThat(testExtractOrganisation.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
     }
@@ -154,7 +154,7 @@ public class ExtractOrganisationResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(extractOrganisation.getId().intValue())))
-            .andExpect(jsonPath("$.[*].organisation").value(hasItem(DEFAULT_ORGANISATION.toString())))
+            .andExpect(jsonPath("$.[*].organisationName").value(hasItem(DEFAULT_ORGANISATION_NAME.toString())))
             .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.toString())))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())));
     }
@@ -170,7 +170,7 @@ public class ExtractOrganisationResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(extractOrganisation.getId().intValue()))
-            .andExpect(jsonPath("$.organisation").value(DEFAULT_ORGANISATION.toString()))
+            .andExpect(jsonPath("$.organisationName").value(DEFAULT_ORGANISATION_NAME.toString()))
             .andExpect(jsonPath("$.modifiedDate").value(DEFAULT_MODIFIED_DATE.toString()))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.toString()));
     }
@@ -196,7 +196,7 @@ public class ExtractOrganisationResourceIntTest {
         // Disconnect from session so that the updates on updatedExtractOrganisation are not directly saved in db
         em.detach(updatedExtractOrganisation);
         updatedExtractOrganisation
-            .organisation(UPDATED_ORGANISATION)
+            .organisationName(UPDATED_ORGANISATION_NAME)
             .modifiedDate(UPDATED_MODIFIED_DATE)
             .createdDate(UPDATED_CREATED_DATE);
 
@@ -209,7 +209,7 @@ public class ExtractOrganisationResourceIntTest {
         List<ExtractOrganisation> extractOrganisationList = extractOrganisationRepository.findAll();
         assertThat(extractOrganisationList).hasSize(databaseSizeBeforeUpdate);
         ExtractOrganisation testExtractOrganisation = extractOrganisationList.get(extractOrganisationList.size() - 1);
-        assertThat(testExtractOrganisation.getOrganisation()).isEqualTo(UPDATED_ORGANISATION);
+        assertThat(testExtractOrganisation.getOrganisationName()).isEqualTo(UPDATED_ORGANISATION_NAME);
         assertThat(testExtractOrganisation.getModifiedDate()).isEqualTo(UPDATED_MODIFIED_DATE);
         assertThat(testExtractOrganisation.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
     }
