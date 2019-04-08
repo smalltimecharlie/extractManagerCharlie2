@@ -1,0 +1,94 @@
+
+entity Organisation {
+        CDB  Integer,
+        OrganisationName String,
+        NationalPracticeCode String,
+        Active Boolean
+}
+
+entity ExtractConfig {
+        Extractname  String,
+        Type String,
+        Requestingorg String,
+        Active Boolean,
+        Deleted Boolean,
+        EmailContact String,
+        CreatedDate Instant
+}
+
+entity ExtractOrganisation {
+        Organisation  String,
+        ModifiedDate Instant,
+        CreatedDate Instant
+}
+
+entity ExtractParts {
+        ExtractPart  String,
+        RetentionPeriod Integer,
+        FileFormat String,
+        RetryCount Integer,
+        Schedule String,
+        FileType String,
+        Compression String,
+        PGPCert String,
+        SFTPPubKey String,
+        SFTPUsername String,
+        EncryptionType String
+}
+
+entity ExtractDetails {
+        Key  String,
+        Value String
+}
+
+entity ExtractTables {
+        Tablename  String,
+        IsExtractable Boolean
+}
+
+entity ExtractOrganisationAudit {
+        CreatedDate  Instant,
+        Success Boolean
+}
+
+entity ExtractAudit {
+        ExtractPart  String,
+        CreatedDate Instant,
+        Message String,
+        ExtractStartTime String,
+        ExtractEndTime String,
+        FirstExtractPoint String,
+        LastExtractPoint String,
+        OutputFileName String,
+        RecordCount Integer,
+        FileSize Integer,
+        AirflowUrl String,
+        Success Boolean
+}
+
+entity ExtractTables {
+        Tablename  String,
+        IsExtractable Boolean
+}
+
+relationship OneToMany {
+        Organisation{ExtractOrganisation} to ExtractOrganisation,
+        Organisation{ExtractOrganisationAudit} to ExtractOrganisationAudit
+}
+
+relationship OneToMany {
+        ExtractConfig{ExtractOrganisation} to ExtractOrganisation,
+        ExtractConfig{ExtractParts} to ExtractParts,
+        ExtractConfig{ExtractDetails} to ExtractDetails,
+        ExtractConfig{ExtractOrganisationAudit} to ExtractOrganisationAudit,
+        ExtractConfig{ExtractAudit} to ExtractAudit
+}
+
+
+relationship OneToMany {
+        ExtractTables{ExtractParts} to ExtractParts,
+        ExtractTables{ExtractOrganisationAudit} to ExtractOrganisationAudit,
+        ExtractTables{ExtractAudit} to ExtractAudit
+}
+
+
