@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-extract-parts-heading">Create or edit a Extract Parts</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!extractParts.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="extractParts.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractPart">Extract Part</label>
+                    <input type="text" class="form-control" name="extractPart" id="field_extractPart"
+                        [(ngModel)]="extractParts.extractPart" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_retentionPeriod">Retention Period</label>
+                    <input type="number" class="form-control" name="retentionPeriod" id="field_retentionPeriod"
+                        [(ngModel)]="extractParts.retentionPeriod" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileFormat">File Format</label>
+                    <input type="text" class="form-control" name="fileFormat" id="field_fileFormat"
+                        [(ngModel)]="extractParts.fileFormat" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_retryCount">Retry Count</label>
+                    <input type="number" class="form-control" name="retryCount" id="field_retryCount"
+                        [(ngModel)]="extractParts.retryCount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_schedule">Schedule</label>
+                    <input type="text" class="form-control" name="schedule" id="field_schedule"
+                        [(ngModel)]="extractParts.schedule" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileType">File Type</label>
+                    <input type="text" class="form-control" name="fileType" id="field_fileType"
+                        [(ngModel)]="extractParts.fileType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_compression">Compression</label>
+                    <input type="text" class="form-control" name="compression" id="field_compression"
+                        [(ngModel)]="extractParts.compression" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pGPCert">P GP Cert</label>
+                    <input type="text" class="form-control" name="pGPCert" id="field_pGPCert"
+                        [(ngModel)]="extractParts.pGPCert" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sFTPPubKey">S FTP Pub Key</label>
+                    <input type="text" class="form-control" name="sFTPPubKey" id="field_sFTPPubKey"
+                        [(ngModel)]="extractParts.sFTPPubKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sFTPUsername">S FTP Username</label>
+                    <input type="text" class="form-control" name="sFTPUsername" id="field_sFTPUsername"
+                        [(ngModel)]="extractParts.sFTPUsername" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_encryptionType">Encryption Type</label>
+                    <input type="text" class="form-control" name="encryptionType" id="field_encryptionType"
+                        [(ngModel)]="extractParts.encryptionType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractConfig">Extract Config</label>
+                    <select class="form-control" id="field_extractConfig" name="extractConfig" [(ngModel)]="extractParts.extractConfig" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractConfigOption.id === extractParts.extractConfig?.id ? extractParts.extractConfig : extractConfigOption" *ngFor="let extractConfigOption of extractconfigs; trackBy: trackExtractConfigById">{{extractConfigOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractTables">Extract Tables</label>
+                    <select class="form-control" id="field_extractTables" name="extractTables" [(ngModel)]="extractParts.extractTables" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractTablesOption.id === extractParts.extractTables?.id ? extractParts.extractTables : extractTablesOption" *ngFor="let extractTablesOption of extracttables; trackBy: trackExtractTablesById">{{extractTablesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

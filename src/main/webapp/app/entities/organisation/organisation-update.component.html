@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-organisation-heading">Create or edit a Organisation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!organisation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="organisation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cDB">C DB</label>
+                    <input type="number" class="form-control" name="cDB" id="field_cDB"
+                        [(ngModel)]="organisation.cDB" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisationName">Organisation Name</label>
+                    <input type="text" class="form-control" name="organisationName" id="field_organisationName"
+                        [(ngModel)]="organisation.organisationName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nationalPracticeCode">National Practice Code</label>
+                    <input type="text" class="form-control" name="nationalPracticeCode" id="field_nationalPracticeCode"
+                        [(ngModel)]="organisation.nationalPracticeCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                        [(ngModel)]="organisation.active" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

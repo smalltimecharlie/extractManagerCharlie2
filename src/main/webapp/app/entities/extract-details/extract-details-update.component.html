@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-extract-details-heading">Create or edit a Extract Details</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!extractDetails.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="extractDetails.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_key">Key</label>
+                    <input type="text" class="form-control" name="key" id="field_key"
+                        [(ngModel)]="extractDetails.key" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_value">Value</label>
+                    <input type="text" class="form-control" name="value" id="field_value"
+                        [(ngModel)]="extractDetails.value" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractConfig">Extract Config</label>
+                    <select class="form-control" id="field_extractConfig" name="extractConfig" [(ngModel)]="extractDetails.extractConfig" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractConfigOption.id === extractDetails.extractConfig?.id ? extractDetails.extractConfig : extractConfigOption" *ngFor="let extractConfigOption of extractconfigs; trackBy: trackExtractConfigById">{{extractConfigOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

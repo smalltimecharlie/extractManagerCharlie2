@@ -1,0 +1,74 @@
+{
+    "name": "ExtractConfig",
+    "fields": [
+        {
+            "fieldName": "extractname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "requestingorg",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "emailContact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractOrganisation",
+            "otherEntityRelationshipName": "extractConfig",
+            "relationshipName": "extractOrganisation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractParts",
+            "otherEntityRelationshipName": "extractConfig",
+            "relationshipName": "extractParts"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractDetails",
+            "otherEntityRelationshipName": "extractConfig",
+            "relationshipName": "extractDetails"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractOrganisationAudit",
+            "otherEntityRelationshipName": "extractConfig",
+            "relationshipName": "extractOrganisationAudit"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractAudit",
+            "otherEntityRelationshipName": "extractConfig",
+            "relationshipName": "extractAudit"
+        }
+    ],
+    "changelogDate": "20190408105740",
+    "entityTableName": "extract_config",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="extractAudit">
+            <h2><span>Extract Audit</span> {{extractAudit.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Extract Part</span></dt>
+                <dd>
+                    <span>{{extractAudit.extractPart}}</span>
+                </dd>
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{extractAudit.createdDate}}</span>
+                </dd>
+                <dt><span>Message</span></dt>
+                <dd>
+                    <span>{{extractAudit.message}}</span>
+                </dd>
+                <dt><span>Extract Start Time</span></dt>
+                <dd>
+                    <span>{{extractAudit.extractStartTime}}</span>
+                </dd>
+                <dt><span>Extract End Time</span></dt>
+                <dd>
+                    <span>{{extractAudit.extractEndTime}}</span>
+                </dd>
+                <dt><span>First Extract Point</span></dt>
+                <dd>
+                    <span>{{extractAudit.firstExtractPoint}}</span>
+                </dd>
+                <dt><span>Last Extract Point</span></dt>
+                <dd>
+                    <span>{{extractAudit.lastExtractPoint}}</span>
+                </dd>
+                <dt><span>Output File Name</span></dt>
+                <dd>
+                    <span>{{extractAudit.outputFileName}}</span>
+                </dd>
+                <dt><span>Record Count</span></dt>
+                <dd>
+                    <span>{{extractAudit.recordCount}}</span>
+                </dd>
+                <dt><span>File Size</span></dt>
+                <dd>
+                    <span>{{extractAudit.fileSize}}</span>
+                </dd>
+                <dt><span>Airflow Url</span></dt>
+                <dd>
+                    <span>{{extractAudit.airflowUrl}}</span>
+                </dd>
+                <dt><span>Success</span></dt>
+                <dd>
+                    <span>{{extractAudit.success}}</span>
+                </dd>
+                <dt><span>Extract Config</span></dt>
+                <dd>
+                    <div *ngIf="extractAudit.extractConfig">
+                        <a [routerLink]="['/extract-config', extractAudit.extractConfig?.id, 'view']">{{extractAudit.extractConfig?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Extract Tables</span></dt>
+                <dd>
+                    <div *ngIf="extractAudit.extractTables">
+                        <a [routerLink]="['/extract-tables', extractAudit.extractTables?.id, 'view']">{{extractAudit.extractTables?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/extract-audit', extractAudit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

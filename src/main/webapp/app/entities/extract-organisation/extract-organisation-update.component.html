@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-extract-organisation-heading">Create or edit a Extract Organisation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!extractOrganisation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="extractOrganisation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisation">Organisation</label>
+                    <input type="text" class="form-control" name="organisation" id="field_organisation"
+                        [(ngModel)]="extractOrganisation.organisation" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_modifiedDate">Modified Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifiedDate" type="datetime-local" class="form-control" name="modifiedDate" [(ngModel)]="modifiedDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="createdDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisation">Organisation</label>
+                    <select class="form-control" id="field_organisation" name="organisation" [(ngModel)]="extractOrganisation.organisation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="organisationOption.id === extractOrganisation.organisation?.id ? extractOrganisation.organisation : organisationOption" *ngFor="let organisationOption of organisations; trackBy: trackOrganisationById">{{organisationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractConfig">Extract Config</label>
+                    <select class="form-control" id="field_extractConfig" name="extractConfig" [(ngModel)]="extractOrganisation.extractConfig" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractConfigOption.id === extractOrganisation.extractConfig?.id ? extractOrganisation.extractConfig : extractConfigOption" *ngFor="let extractConfigOption of extractconfigs; trackBy: trackExtractConfigById">{{extractConfigOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

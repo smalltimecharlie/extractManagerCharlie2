@@ -1,0 +1,44 @@
+{
+    "name": "Organisation",
+    "fields": [
+        {
+            "fieldName": "cDB",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "organisationName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nationalPracticeCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractOrganisation",
+            "otherEntityRelationshipName": "organisation",
+            "relationshipName": "extractOrganisation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "extractOrganisationAudit",
+            "otherEntityRelationshipName": "organisation",
+            "relationshipName": "extractOrganisationAudit"
+        }
+    ],
+    "changelogDate": "20190408105739",
+    "entityTableName": "organisation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
