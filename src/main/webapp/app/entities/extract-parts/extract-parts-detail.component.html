@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="extractParts">
+            <h2><span>Extract Parts</span> {{extractParts.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Extract Part</span></dt>
+                <dd>
+                    <span>{{extractParts.extractPart}}</span>
+                </dd>
+                <dt><span>Retention Period</span></dt>
+                <dd>
+                    <span>{{extractParts.retentionPeriod}}</span>
+                </dd>
+                <dt><span>File Format</span></dt>
+                <dd>
+                    <span>{{extractParts.fileFormat}}</span>
+                </dd>
+                <dt><span>Retry Count</span></dt>
+                <dd>
+                    <span>{{extractParts.retryCount}}</span>
+                </dd>
+                <dt><span>Schedule</span></dt>
+                <dd>
+                    <span>{{extractParts.schedule}}</span>
+                </dd>
+                <dt><span>File Type</span></dt>
+                <dd>
+                    <span>{{extractParts.fileType}}</span>
+                </dd>
+                <dt><span>Compression</span></dt>
+                <dd>
+                    <span>{{extractParts.compression}}</span>
+                </dd>
+                <dt><span>P GP Cert</span></dt>
+                <dd>
+                    <span>{{extractParts.pGPCert}}</span>
+                </dd>
+                <dt><span>S FTP Pub Key</span></dt>
+                <dd>
+                    <span>{{extractParts.sFTPPubKey}}</span>
+                </dd>
+                <dt><span>S FTP Username</span></dt>
+                <dd>
+                    <span>{{extractParts.sFTPUsername}}</span>
+                </dd>
+                <dt><span>Encryption Type</span></dt>
+                <dd>
+                    <span>{{extractParts.encryptionType}}</span>
+                </dd>
+                <dt><span>Extract Config</span></dt>
+                <dd>
+                    <div *ngIf="extractParts.extractConfig">
+                        <a [routerLink]="['/extract-config', extractParts.extractConfig?.id, 'view']">{{extractParts.extractConfig?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Extract Tables</span></dt>
+                <dd>
+                    <div *ngIf="extractParts.extractTables">
+                        <a [routerLink]="['/extract-tables', extractParts.extractTables?.id, 'view']">{{extractParts.extractTables?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/extract-parts', extractParts.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

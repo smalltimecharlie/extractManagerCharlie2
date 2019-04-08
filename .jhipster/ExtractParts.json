@@ -1,0 +1,72 @@
+{
+    "name": "ExtractParts",
+    "fields": [
+        {
+            "fieldName": "extractPart",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "retentionPeriod",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fileFormat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "retryCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "schedule",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fileType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "compression",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pGPCert",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sFTPPubKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sFTPUsername",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "encryptionType",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "extractConfig",
+            "otherEntityName": "extractConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "extractTables",
+            "otherEntityName": "extractTables",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190408105742",
+    "entityTableName": "extract_parts",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

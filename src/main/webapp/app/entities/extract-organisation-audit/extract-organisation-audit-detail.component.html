@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="extractOrganisationAudit">
+            <h2><span>Extract Organisation Audit</span> {{extractOrganisationAudit.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{extractOrganisationAudit.createdDate}}</span>
+                </dd>
+                <dt><span>Success</span></dt>
+                <dd>
+                    <span>{{extractOrganisationAudit.success}}</span>
+                </dd>
+                <dt><span>Organisation</span></dt>
+                <dd>
+                    <div *ngIf="extractOrganisationAudit.organisation">
+                        <a [routerLink]="['/organisation', extractOrganisationAudit.organisation?.id, 'view']">{{extractOrganisationAudit.organisation?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Extract Config</span></dt>
+                <dd>
+                    <div *ngIf="extractOrganisationAudit.extractConfig">
+                        <a [routerLink]="['/extract-config', extractOrganisationAudit.extractConfig?.id, 'view']">{{extractOrganisationAudit.extractConfig?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Extract Tables</span></dt>
+                <dd>
+                    <div *ngIf="extractOrganisationAudit.extractTables">
+                        <a [routerLink]="['/extract-tables', extractOrganisationAudit.extractTables?.id, 'view']">{{extractOrganisationAudit.extractTables?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/extract-organisation-audit', extractOrganisationAudit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

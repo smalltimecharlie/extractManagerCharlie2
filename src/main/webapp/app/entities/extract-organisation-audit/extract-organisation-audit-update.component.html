@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-extract-organisation-audit-heading">Create or edit a Extract Organisation Audit</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!extractOrganisationAudit.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="extractOrganisationAudit.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="createdDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_success">Success</label>
+                    <input type="checkbox" class="form-control" name="success" id="field_success"
+                        [(ngModel)]="extractOrganisationAudit.success" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisation">Organisation</label>
+                    <select class="form-control" id="field_organisation" name="organisation" [(ngModel)]="extractOrganisationAudit.organisation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="organisationOption.id === extractOrganisationAudit.organisation?.id ? extractOrganisationAudit.organisation : organisationOption" *ngFor="let organisationOption of organisations; trackBy: trackOrganisationById">{{organisationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractConfig">Extract Config</label>
+                    <select class="form-control" id="field_extractConfig" name="extractConfig" [(ngModel)]="extractOrganisationAudit.extractConfig" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractConfigOption.id === extractOrganisationAudit.extractConfig?.id ? extractOrganisationAudit.extractConfig : extractConfigOption" *ngFor="let extractConfigOption of extractconfigs; trackBy: trackExtractConfigById">{{extractConfigOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractTables">Extract Tables</label>
+                    <select class="form-control" id="field_extractTables" name="extractTables" [(ngModel)]="extractOrganisationAudit.extractTables" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractTablesOption.id === extractOrganisationAudit.extractTables?.id ? extractOrganisationAudit.extractTables : extractTablesOption" *ngFor="let extractTablesOption of extracttables; trackBy: trackExtractTablesById">{{extractTablesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

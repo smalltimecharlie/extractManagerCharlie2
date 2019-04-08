@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span>Extract Parts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-extract-parts" [routerLink]="['/extract-parts/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Extract Parts
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="extractParts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Extract Part</span></th>
+            <th><span>Retention Period</span></th>
+            <th><span>File Format</span></th>
+            <th><span>Retry Count</span></th>
+            <th><span>Schedule</span></th>
+            <th><span>File Type</span></th>
+            <th><span>Compression</span></th>
+            <th><span>P GP Cert</span></th>
+            <th><span>S FTP Pub Key</span></th>
+            <th><span>S FTP Username</span></th>
+            <th><span>Encryption Type</span></th>
+            <th><span>Extract Config</span></th>
+            <th><span>Extract Tables</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let extractParts of extractParts ;trackBy: trackId">
+                <td><a [routerLink]="['/extract-parts', extractParts.id, 'view' ]">{{extractParts.id}}</a></td>
+                <td>{{extractParts.extractPart}}</td>
+                <td>{{extractParts.retentionPeriod}}</td>
+                <td>{{extractParts.fileFormat}}</td>
+                <td>{{extractParts.retryCount}}</td>
+                <td>{{extractParts.schedule}}</td>
+                <td>{{extractParts.fileType}}</td>
+                <td>{{extractParts.compression}}</td>
+                <td>{{extractParts.pGPCert}}</td>
+                <td>{{extractParts.sFTPPubKey}}</td>
+                <td>{{extractParts.sFTPUsername}}</td>
+                <td>{{extractParts.encryptionType}}</td>
+                <td>
+                    <div *ngIf="extractParts.extractConfig">
+                        <a [routerLink]="['../extract-config', extractParts.extractConfig?.id, 'view' ]" >{{extractParts.extractConfig?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="extractParts.extractTables">
+                        <a [routerLink]="['../extract-tables', extractParts.extractTables?.id, 'view' ]" >{{extractParts.extractTables?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/extract-parts', extractParts.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/extract-parts', extractParts.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'extract-parts', { outlets: { popup: extractParts.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

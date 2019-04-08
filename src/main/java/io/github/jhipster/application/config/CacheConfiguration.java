@@ -38,6 +38,24 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Organisation.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Organisation.class.getName() + ".extractOrganisations", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Organisation.class.getName() + ".extractOrganisationAudits", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName() + ".extractOrganisations", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName() + ".extractParts", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName() + ".extractDetails", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName() + ".extractOrganisationAudits", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractConfig.class.getName() + ".extractAudits", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractOrganisation.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractParts.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractTables.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractTables.class.getName() + ".extractParts", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractTables.class.getName() + ".extractOrganisationAudits", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractTables.class.getName() + ".extractAudits", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractOrganisationAudit.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ExtractAudit.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

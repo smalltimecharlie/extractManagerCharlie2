@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-extract-audit-heading">Create or edit a Extract Audit</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!extractAudit.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="extractAudit.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractPart">Extract Part</label>
+                    <input type="text" class="form-control" name="extractPart" id="field_extractPart"
+                        [(ngModel)]="extractAudit.extractPart" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="createdDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_message">Message</label>
+                    <input type="text" class="form-control" name="message" id="field_message"
+                        [(ngModel)]="extractAudit.message" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractStartTime">Extract Start Time</label>
+                    <input type="text" class="form-control" name="extractStartTime" id="field_extractStartTime"
+                        [(ngModel)]="extractAudit.extractStartTime" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractEndTime">Extract End Time</label>
+                    <input type="text" class="form-control" name="extractEndTime" id="field_extractEndTime"
+                        [(ngModel)]="extractAudit.extractEndTime" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstExtractPoint">First Extract Point</label>
+                    <input type="text" class="form-control" name="firstExtractPoint" id="field_firstExtractPoint"
+                        [(ngModel)]="extractAudit.firstExtractPoint" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastExtractPoint">Last Extract Point</label>
+                    <input type="text" class="form-control" name="lastExtractPoint" id="field_lastExtractPoint"
+                        [(ngModel)]="extractAudit.lastExtractPoint" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_outputFileName">Output File Name</label>
+                    <input type="text" class="form-control" name="outputFileName" id="field_outputFileName"
+                        [(ngModel)]="extractAudit.outputFileName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_recordCount">Record Count</label>
+                    <input type="number" class="form-control" name="recordCount" id="field_recordCount"
+                        [(ngModel)]="extractAudit.recordCount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileSize">File Size</label>
+                    <input type="number" class="form-control" name="fileSize" id="field_fileSize"
+                        [(ngModel)]="extractAudit.fileSize" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_airflowUrl">Airflow Url</label>
+                    <input type="text" class="form-control" name="airflowUrl" id="field_airflowUrl"
+                        [(ngModel)]="extractAudit.airflowUrl" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_success">Success</label>
+                    <input type="checkbox" class="form-control" name="success" id="field_success"
+                        [(ngModel)]="extractAudit.success" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractConfig">Extract Config</label>
+                    <select class="form-control" id="field_extractConfig" name="extractConfig" [(ngModel)]="extractAudit.extractConfig" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractConfigOption.id === extractAudit.extractConfig?.id ? extractAudit.extractConfig : extractConfigOption" *ngFor="let extractConfigOption of extractconfigs; trackBy: trackExtractConfigById">{{extractConfigOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_extractTables">Extract Tables</label>
+                    <select class="form-control" id="field_extractTables" name="extractTables" [(ngModel)]="extractAudit.extractTables" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extractTablesOption.id === extractAudit.extractTables?.id ? extractAudit.extractTables : extractTablesOption" *ngFor="let extractTablesOption of extracttables; trackBy: trackExtractTablesById">{{extractTablesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

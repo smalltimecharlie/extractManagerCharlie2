@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span>Extract Audits</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-extract-audit" [routerLink]="['/extract-audit/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Extract Audit
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="extractAudits">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Extract Part</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Message</span></th>
+            <th><span>Extract Start Time</span></th>
+            <th><span>Extract End Time</span></th>
+            <th><span>First Extract Point</span></th>
+            <th><span>Last Extract Point</span></th>
+            <th><span>Output File Name</span></th>
+            <th><span>Record Count</span></th>
+            <th><span>File Size</span></th>
+            <th><span>Airflow Url</span></th>
+            <th><span>Success</span></th>
+            <th><span>Extract Config</span></th>
+            <th><span>Extract Tables</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let extractAudit of extractAudits ;trackBy: trackId">
+                <td><a [routerLink]="['/extract-audit', extractAudit.id, 'view' ]">{{extractAudit.id}}</a></td>
+                <td>{{extractAudit.extractPart}}</td>
+                <td>{{extractAudit.createdDate | date:'medium'}}</td>
+                <td>{{extractAudit.message}}</td>
+                <td>{{extractAudit.extractStartTime}}</td>
+                <td>{{extractAudit.extractEndTime}}</td>
+                <td>{{extractAudit.firstExtractPoint}}</td>
+                <td>{{extractAudit.lastExtractPoint}}</td>
+                <td>{{extractAudit.outputFileName}}</td>
+                <td>{{extractAudit.recordCount}}</td>
+                <td>{{extractAudit.fileSize}}</td>
+                <td>{{extractAudit.airflowUrl}}</td>
+                <td>{{extractAudit.success}}</td>
+                <td>
+                    <div *ngIf="extractAudit.extractConfig">
+                        <a [routerLink]="['../extract-config', extractAudit.extractConfig?.id, 'view' ]" >{{extractAudit.extractConfig?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="extractAudit.extractTables">
+                        <a [routerLink]="['../extract-tables', extractAudit.extractTables?.id, 'view' ]" >{{extractAudit.extractTables?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/extract-audit', extractAudit.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/extract-audit', extractAudit.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'extract-audit', { outlets: { popup: extractAudit.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

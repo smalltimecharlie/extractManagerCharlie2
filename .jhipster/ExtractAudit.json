@@ -1,0 +1,76 @@
+{
+    "name": "ExtractAudit",
+    "fields": [
+        {
+            "fieldName": "extractPart",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extractStartTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extractEndTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstExtractPoint",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastExtractPoint",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "outputFileName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "recordCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fileSize",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "airflowUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "success",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "extractConfig",
+            "otherEntityName": "extractConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "extractTables",
+            "otherEntityName": "extractTables",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190408105746",
+    "entityTableName": "extract_audit",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

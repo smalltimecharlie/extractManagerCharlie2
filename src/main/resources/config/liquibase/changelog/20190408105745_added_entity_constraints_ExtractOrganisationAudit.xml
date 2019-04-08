@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ExtractOrganisationAudit.
+    -->
+    <changeSet id="20190408105745-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="organisation_id"
+                                 baseTableName="extract_organisation_audit"
+                                 constraintName="fk_extract_organisation_audit_organisation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organisation"/>
+
+        <addForeignKeyConstraint baseColumnNames="extract_config_id"
+                                 baseTableName="extract_organisation_audit"
+                                 constraintName="fk_extract_organisation_audit_extract_config_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="extract_config"/>
+
+        <addForeignKeyConstraint baseColumnNames="extract_tables_id"
+                                 baseTableName="extract_organisation_audit"
+                                 constraintName="fk_extract_organisation_audit_extract_tables_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="extract_tables"/>
+
+    </changeSet>
+</databaseChangeLog>
