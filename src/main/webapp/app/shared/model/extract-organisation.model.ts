@@ -4,7 +4,7 @@ import { IExtractConfig } from 'app/shared/model/extract-config.model';
 
 export interface IExtractOrganisation {
     id?: number;
-    organisation?: string;
+    organisationName?: string;
     modifiedDate?: Moment;
     createdDate?: Moment;
     organisation?: IOrganisation;
@@ -14,7 +14,7 @@ export interface IExtractOrganisation {
 export class ExtractOrganisation implements IExtractOrganisation {
     constructor(
         public id?: number,
-        public organisation?: string,
+        public organisationName?: string,
         public modifiedDate?: Moment,
         public createdDate?: Moment,
         public organisation?: IOrganisation,

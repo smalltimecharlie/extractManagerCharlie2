@@ -25,8 +25,8 @@ public class ExtractOrganisation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "organisation")
-    private String organisation;
+    @Column(name = "organisation_name")
+    private String organisationName;
 
     @Column(name = "modified_date")
     private Instant modifiedDate;
@@ -51,17 +51,17 @@ public class ExtractOrganisation implements Serializable {
         this.id = id;
     }
 
-    public String getOrganisation() {
-        return organisation;
+    public String getOrganisationName() {
+        return organisationName;
     }
 
-    public ExtractOrganisation organisation(String organisation) {
-        this.organisation = organisation;
+    public ExtractOrganisation organisationName(String organisationName) {
+        this.organisationName = organisationName;
         return this;
     }
 
-    public void setOrganisation(String organisation) {
-        this.organisation = organisation;
+    public void setOrganisationName(String organisationName) {
+        this.organisationName = organisationName;
     }
 
     public Instant getModifiedDate() {
@@ -141,7 +141,7 @@ public class ExtractOrganisation implements Serializable {
     public String toString() {
         return "ExtractOrganisation{" +
             "id=" + getId() +
-            ", organisation='" + getOrganisation() + "'" +
+            ", organisationName='" + getOrganisationName() + "'" +
             ", modifiedDate='" + getModifiedDate() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             "}";
