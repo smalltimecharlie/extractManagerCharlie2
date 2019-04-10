@@ -25,7 +25,10 @@
             <tr *ngFor="let extractDetails of extractDetails ;trackBy: trackId">
                 <td><a [routerLink]="['/extract-details', extractDetails.id, 'view' ]">{{extractDetails.id}}</a></td>
                 <td>{{extractDetails.key}}</td>
-                <td>{{extractDetails.value}}</td>
+                <td>
+                    <a *ngIf="extractDetails.value" (click)="openFile(extractDetails.valueContentType, extractDetails.value)">open</a>
+                    <span *ngIf="extractDetails.value">{{extractDetails.valueContentType}}, {{byteSize(extractDetails.value)}}</span>
+                </td>
                 <td>
                     <div *ngIf="extractDetails.extractConfig">
                         <a [routerLink]="['../extract-config', extractDetails.extractConfig?.id, 'view' ]" >{{extractDetails.extractConfig?.id}}</a>
