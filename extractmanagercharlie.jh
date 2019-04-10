@@ -38,7 +38,7 @@ entity ExtractParts {
 
 entity ExtractDetails {
         Key  String,
-        Value String
+        Value AnyBlob
 }
 
 entity ExtractTables {
