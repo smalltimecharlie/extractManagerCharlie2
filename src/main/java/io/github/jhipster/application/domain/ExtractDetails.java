@@ -27,8 +27,12 @@ public class ExtractDetails implements Serializable {
     @Column(name = "jhi_key")
     private String key;
 
+    @Lob
     @Column(name = "jhi_value")
-    private String value;
+    private byte[] value;
+
+    @Column(name = "jhi_value_content_type")
+    private String valueContentType;
 
     @ManyToOne
     @JsonIgnoreProperties("extractDetails")
@@ -56,17 +60,30 @@ public class ExtractDetails implements Serializable {
         this.key = key;
     }
 
-    public String getValue() {
+    public byte[] getValue() {
         return value;
     }
 
-    public ExtractDetails value(String value) {
+    public ExtractDetails value(byte[] value) {
         this.value = value;
         return this;
     }
 
-    public void setValue(String value) {
+    public void setValue(byte[] value) {
         this.value = value;
+    }
+
+    public String getValueContentType() {
+        return valueContentType;
+    }
+
+    public ExtractDetails valueContentType(String valueContentType) {
+        this.valueContentType = valueContentType;
+        return this;
+    }
+
+    public void setValueContentType(String valueContentType) {
+        this.valueContentType = valueContentType;
     }
 
     public ExtractConfig getExtractConfig() {
@@ -109,6 +126,7 @@ public class ExtractDetails implements Serializable {
             "id=" + getId() +
             ", key='" + getKey() + "'" +
             ", value='" + getValue() + "'" +
+            ", valueContentType='" + getValueContentType() + "'" +
             "}";
     }
 }

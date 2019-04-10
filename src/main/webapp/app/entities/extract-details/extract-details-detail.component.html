@@ -11,7 +11,10 @@
                 </dd>
                 <dt><span>Value</span></dt>
                 <dd>
-                    <span>{{extractDetails.value}}</span>
+                    <div *ngIf="extractDetails.value">
+                        <a (click)="openFile(extractDetails.valueContentType, extractDetails.value)">open</a>
+                        {{extractDetails.valueContentType}}, {{byteSize(extractDetails.value)}}
+                    </div>
                 </dd>
                 <dt><span>Extract Config</span></dt>
                 <dd>

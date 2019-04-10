@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
@@ -43,8 +44,10 @@ public class ExtractDetailsResourceIntTest {
     private static final String DEFAULT_KEY = "AAAAAAAAAA";
     private static final String UPDATED_KEY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_VALUE = "AAAAAAAAAA";
-    private static final String UPDATED_VALUE = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_VALUE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_VALUE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_VALUE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_VALUE_CONTENT_TYPE = "image/png";
 
     @Autowired
     private ExtractDetailsRepository extractDetailsRepository;
@@ -89,7 +92,8 @@ public class ExtractDetailsResourceIntTest {
     public static ExtractDetails createEntity(EntityManager em) {
         ExtractDetails extractDetails = new ExtractDetails()
             .key(DEFAULT_KEY)
-            .value(DEFAULT_VALUE);
+            .value(DEFAULT_VALUE)
+            .valueContentType(DEFAULT_VALUE_CONTENT_TYPE);
         return extractDetails;
     }
 
@@ -115,6 +119,7 @@ public class ExtractDetailsResourceIntTest {
         ExtractDetails testExtractDetails = extractDetailsList.get(extractDetailsList.size() - 1);
         assertThat(testExtractDetails.getKey()).isEqualTo(DEFAULT_KEY);
         assertThat(testExtractDetails.getValue()).isEqualTo(DEFAULT_VALUE);
+        assertThat(testExtractDetails.getValueContentType()).isEqualTo(DEFAULT_VALUE_CONTENT_TYPE);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class ExtractDetailsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(extractDetails.getId().intValue())))
             .andExpect(jsonPath("$.[*].key").value(hasItem(DEFAULT_KEY.toString())))
-            .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.toString())));
+            .andExpect(jsonPath("$.[*].valueContentType").value(hasItem(DEFAULT_VALUE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].value").value(hasItem(Base64Utils.encodeToString(DEFAULT_VALUE))));
     }
     
     @Test
@@ -163,7 +169,8 @@ public class ExtractDetailsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(extractDetails.getId().intValue()))
             .andExpect(jsonPath("$.key").value(DEFAULT_KEY.toString()))
-            .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.toString()));
+            .andExpect(jsonPath("$.valueContentType").value(DEFAULT_VALUE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.value").value(Base64Utils.encodeToString(DEFAULT_VALUE)));
     }
 
     @Test
@@ -188,7 +195,8 @@ public class ExtractDetailsResourceIntTest {
         em.detach(updatedExtractDetails);
         updatedExtractDetails
             .key(UPDATED_KEY)
-            .value(UPDATED_VALUE);
+            .value(UPDATED_VALUE)
+            .valueContentType(UPDATED_VALUE_CONTENT_TYPE);
 
         restExtractDetailsMockMvc.perform(put("/api/extract-details")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +209,7 @@ public class ExtractDetailsResourceIntTest {
         ExtractDetails testExtractDetails = extractDetailsList.get(extractDetailsList.size() - 1);
         assertThat(testExtractDetails.getKey()).isEqualTo(UPDATED_KEY);
         assertThat(testExtractDetails.getValue()).isEqualTo(UPDATED_VALUE);
+        assertThat(testExtractDetails.getValueContentType()).isEqualTo(UPDATED_VALUE_CONTENT_TYPE);
     }
 
     @Test

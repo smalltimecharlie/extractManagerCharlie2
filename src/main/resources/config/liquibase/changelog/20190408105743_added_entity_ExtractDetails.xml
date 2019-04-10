@@ -26,7 +26,10 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_value" type="varchar(255)">
+            <column name="jhi_value" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="jhi_value_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

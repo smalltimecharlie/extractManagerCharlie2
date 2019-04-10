@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(ExtractDetailsService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new ExtractDetails(0, 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new ExtractDetails(0, 'AAAAAAA', 'image/png', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {

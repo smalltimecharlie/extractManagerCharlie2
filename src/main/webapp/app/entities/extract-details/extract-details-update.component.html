@@ -16,8 +16,21 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_value">Value</label>
-                    <input type="text" class="form-control" name="value" id="field_value"
+                    <div>
+                        <div *ngIf="extractDetails.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(extractDetails.valueContentType, extractDetails.value)">open</a><br>
+                            <span class="pull-left">{{extractDetails.valueContentType}}, {{byteSize(extractDetails.value)}}</span>
+                            <button type="button" (click)="extractDetails.value=null;extractDetails.valueContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_value" (change)="setFileData($event, extractDetails, 'value', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="value" id="field_value"
                         [(ngModel)]="extractDetails.value" />
+                    <input type="hidden" class="form-control" name="valueContentType" id="field_valueContentType"
+                        [(ngModel)]="extractDetails.valueContentType" />
                 </div>
 
                 <div class="form-group">

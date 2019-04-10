@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IExtractDetails } from 'app/shared/model/extract-details.model';
 import { ExtractDetailsService } from './extract-details.service';
 import { IExtractConfig } from 'app/shared/model/extract-config.model';
@@ -20,6 +20,7 @@ export class ExtractDetailsUpdateComponent implements OnInit {
     extractconfigs: IExtractConfig[];
 
     constructor(
+        protected dataUtils: JhiDataUtils,
         protected jhiAlertService: JhiAlertService,
         protected extractDetailsService: ExtractDetailsService,
         protected extractConfigService: ExtractConfigService,
@@ -38,6 +39,18 @@ export class ExtractDetailsUpdateComponent implements OnInit {
                 map((response: HttpResponse<IExtractConfig[]>) => response.body)
             )
             .subscribe((res: IExtractConfig[]) => (this.extractconfigs = res), (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
     }
 
     previousState() {
